@@ -30,7 +30,7 @@ http://gambiter.com/cards/Tarocco_piemontese.html
 
     king = 14;
     queen = 13;
-    fool = 1;
+    fool = 22;
     cavallo = 12;
     jack = 11;
 
