@@ -1,3 +1,4 @@
+%check to see if dealer can discard a card
 function discardable = can_discard(dealer_hand, discardCard)
     
     if discardCard.points == 5
