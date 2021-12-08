@@ -1,4 +1,4 @@
-classdef player
+classdef player < handle
     %PLAYER Summary of this class goes here
     %   Detailed explanation goes here
 
@@ -8,11 +8,13 @@ classdef player
     end
 
     methods
+        %{
         function obj = player(hand)
             %PLAYER Construct an instance of this class
             %   Detailed explanation goes here
             obj.hand = hand;
         end
+        %}
         %checking if card is in hand
         function yes_in_hand = card_in_hand(obj, card)
             for i = 1:length(obj.hand)

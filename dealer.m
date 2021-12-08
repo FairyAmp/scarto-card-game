@@ -7,7 +7,33 @@ classdef dealer < player
     end
 
     methods
-        
+        function hands = deal_cards(obj, player1, player2, deck)
+            player1.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
+            player2.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
+            obj.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 28, 1);
+            %{
+    round 1
+        hand 1 gets cards 1-5
+        hand 2 gets cards 6-10
+        hand 3 gets cards 11-15
+    round 2
+        hand 1 gets cards 16-20
+        hand 2 gets cards 21-25
+        hand 3 gets cards 26-30
+    round 3
+        hand 1 gets cards 31-35
+        hand 2 gets cards 36-40
+        hand 3 gets cards 41-45
+i + 1 = + 15
+
+            %}
+            for i = 1:floor(length(deck)/(3*5))
+                player1.hand((i*5-4):(i*5)) = deck((i*15-14):(i*15-10));
+                player2.hand((i*5-4):(i*5)) = deck((i*15-9):(i*15-5));
+                obj.hand((i*5-4):(i*5)) = deck((i*15-4):(i*15));
+            end
+            obj.hand(26:28) =  deck(76:78);
+        end
 
         %check to see if dealer can discard a card
         function discardable = can_discard(dealer_hand, discardCard)
