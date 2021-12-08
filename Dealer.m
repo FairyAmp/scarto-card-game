@@ -1,4 +1,4 @@
-classdef dealer < player
+classdef Dealer < Player
     %DEALER Summary of this class goes here
     %   DEALER has all attributes of player + extra stuff
 
@@ -7,7 +7,7 @@ classdef dealer < player
     end
 
     methods
-        function hands = deal_cards(obj, player1, player2, deck)
+        function deal_cards(obj, player1, player2, deck)
             player1.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
             player2.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
             obj.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 28, 1);

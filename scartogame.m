@@ -1,8 +1,8 @@
 deck1 = shuffle_deck(generate_deck());
-dealer_ = dealer;
-player1 = player;
-player2 = player;
-dealer_.deal_cards(player1, player2, deck1);
+dealer = Dealer;
+player1 = Player;
+player2 = Player;
+dealer.deal_cards(player1, player2, deck1);
 
 
 %{

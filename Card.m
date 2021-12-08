@@ -1,4 +1,4 @@
-classdef card
+classdef Card
     %CARD Summary of this class goes here
     %   Detailed explanation goes here
 
@@ -8,7 +8,7 @@ classdef card
     end
 
     methods
-        function obj = card(value, suit)
+        function obj = Card(value, suit)
             %CARD Construct an instance of this class
             %   Detailed explanation goes here
             obj.value = value;

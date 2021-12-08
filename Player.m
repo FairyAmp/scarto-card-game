@@ -1,4 +1,4 @@
-classdef player < handle
+classdef Player < handle
     %PLAYER Summary of this class goes here
     %   Detailed explanation goes here
 
