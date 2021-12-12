@@ -8,9 +8,10 @@ classdef Dealer < Player
 
     methods
         function deal_cards(obj, player1, player2, deck)
-            player1.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
-            player2.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 25, 1);
-            obj.hand = repmat(struct('value', 0, 'suit', "", 'points', 0), 28, 1);
+            player1.hand = repmat(Card(-1,""), 25, 1);
+            
+            player2.hand = repmat(Card(-1,""), 25, 1);
+            obj.hand = repmat(Card(-1,""), 28, 1);
             %{
     round 1
         hand 1 gets cards 1-5
