@@ -25,68 +25,20 @@ http://gambiter.com/cards/Tarocco_piemontese.html
   face cards are king queen cavalier jack 
     %}
     
-    deck = repmat(struct('value', 0, 'suit', "", 'points', 0), 78, 1);
+    deck = repmat(Card(0,""), 78, 1);
     index = 1;
-
-    king = 14;
-    queen = 13;
-    fool = 22;
-    cavallo = 12;
-    jack = 11;
 
     for suit = ["swords", "batons", "cups", "coins"]
         for value = 1:14
-            card.value = value;
-            card.suit = suit;
-            if (card.value == king)
-                card.points = 5;
-            elseif (card.value == queen)
-                card.points = 4;
-            elseif (card.value == cavallo)
-                card.points = 3;
-            elseif (card.value == jack)
-                card.points = 2;
-            else
-                card.points = 1;
-            end
+            card = Card(value,suit);
             deck(index) = card;
             index = index + 1;
         end
     end
+
     for value = 1:22
-        card.suit = "trump";
-        card.value = value;
-        if card.value == fool
-            card.points = 4;
-        else
-            card.points = 5;
-        end
-        deck(index) = card;
+        deck(index) = Card(value, "trump");
         index = index + 1;
     end
-%{
-    for index = 1:length(deck)
-        card = deck(index);
-        %strcmp returns 1 if they are equal in matlab
-        if (strcmp(card.suit, "trump") && card.value ~= fool) || (card.value == king)
-            card.points = 5;
-            "hello1"
-        elseif (~strcmp(card.suit, "trump")) && (card.value == queen)
-            card.points = 4;
-            "hello2"
-        elseif (~strcmp(card.suit, "trump")) && card.value == fool
-            card.points = 4;
-            "hello3"
-        elseif (~strcmp(card.suit, "trump")) && (card.value == cavallo)
-            card.points = 3;
-            "hello4"
-        elseif (~strcmp(card.suit, "trump")) && (card.value == jack)
-            card.points = 2;
-            "hello5"
-        else
-            card.points = 1;
-            "hello6"
-        end
-    end
-%}
+
 end
