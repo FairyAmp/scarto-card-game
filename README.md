@@ -4,7 +4,7 @@ A custom implementation of **Scarto**, a traditional Italian 3-player tarot tric
 
 This repository contains the original game engine prototyped in **MATLAB**, along with an active migration/translation to **Python**.
 
-This was originally built in 2021 as an experiment in [MATLAB/Python]. It is currently unfinished, but the source code is made available here for anyone interested in the algorithms or porting it further.
+This was originally built in 2021 as an experiment in MATLAB and Python. It is currently unfinished, but the source code is made available here for anyone interested in the algorithms or porting it further.
 
 ---
 
