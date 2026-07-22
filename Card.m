@@ -1,11 +1,30 @@
 classdef Card
-    %CARD trump names
     %{
+    cards in this game have 4 suits:
+    round suits: cups (coppe) and coins (denari)
+    long suits: batons (bastoni) and swords (spade)
+    and also a set of cards called trumps
+    which can be considered as their own "suit"
+
+    Note: people who use tarot for divination
+          call the 4 suits "minor arcana"
+          and the trumps "major arcana"
+
+    %CARD trump names
+    
+Note: using the english names of the cards used by tarot readers
+since these names are more familiar to most people
+
+Ranking of trumps:
+
+NOTE: trump 20 ranks higher than 21 in this game
+in other trick taking tarot games, 21 is higher
+
 the Angel "l'angelo" (20),
 the World "il mondo" (21),
 the Sun "il sole" (19),
 the Moon "la luna" (18),
-the Star "le stelle" (17),
+the Stars "le stelle" (17),
 the Tower "la torre" (16),
 the Devil "il diavolo" (15),
 Temperance "la temperenza" (14),
@@ -17,11 +36,11 @@ the Hermit "l'eremita" (9),
 Justice "la giustizia" (8),
 the Chariot "il carro" (7),
 the Lovers "gli amanti" (6),
-the Pope "il papa" (5),
+the Pope or Hierophant "il papa" (5),
 the Emperor "l'imperatore" (4),
 the Empress "l'imperatrice" (3),
-the Popess "la papessa" (2),
-and the Pagat "il bagatto" (1).
+the Popess or priestess "la papessa" (2),
+and the Pagat (magician in some other decks) "il bagatto" (1).
     %}
 
     properties
@@ -31,8 +50,8 @@ and the Pagat "il bagatto" (1).
 
     methods
         function obj = Card(value, suit)
-            %CARD Construct an instance of this class
-            %   Detailed explanation goes here
+            % all cards
+            % take a value and a suit
             obj.value = value;
             obj.suit = suit;
         end
@@ -43,70 +62,90 @@ and the Pagat "il bagatto" (1).
                 s = obj.value_string + " of " + obj.suit;
             end
         end
-        function s = trump_string(obj)
+        %{
+        will use english names
+        since most english speakers
+        wont know the italian
+        %}
+        function Trump = trump_string(obj)
             if obj.value == 1
-                s = "I The Magician";
+                Trump = "I The Magician";
             elseif obj.value == 2
-                s = "II High Priestess";
+                Trump = "II High Priestess";
             elseif obj.value == 3
-                s = "III The Empress";
+                Trump = "III The Empress";
             elseif obj.value == 4
-                s = "IV The Emperor";
+                Trump = "IV The Emperor";
             elseif obj.value == 5
-                s = "V The Hierophant";
+                Trump = "V The Hierophant";
             elseif obj.value == 6
-                s = "VI The Lovers";
+                Trump = "VI The Lovers";
             elseif obj.value == 7
-                s = "VII The Chariot";
+                Trump = "VII The Chariot";
             elseif obj.value == 8
-                s = "VIII Justice";
+                Trump = "VIII Justice";
             elseif obj.value == 9
-                s = "IX The Hermit";
+                Trump = "IX The Hermit";
             elseif obj.value == 10
-                s = "X The Wheel of Fortune";
+                Trump = "X The Wheel of Fortune";
             elseif obj.value == 11
-                s = "XI Strength";
+                Trump = "XI Strength";
             elseif obj.value == 12
-                s = "XII The Hanged Man";
+                Trump = "XII The Hanged Man";
             elseif obj.value == 13
-                s = "XII Death";
+                Trump = "XII Death";
             elseif obj.value == 14
-                s = "XIV Temperance";
+                Trump = "XIV Temperance";
             elseif obj.value == 15
-                s = "XV The Devil";
+                Trump = "XV The Devil";
             elseif obj.value == 16
-                s = "XVI The Tower";
+                Trump = "XVI The Tower";
             elseif obj.value == 17
-                s = "XVII The Stars";
+                Trump = "XVII The Stars";
             elseif obj.value == 18
-                s = "XVIII The Moon";
+                Trump = "XVIII The Moon";
             elseif obj.value == 19
-                s = "XIX The Sun";
+                Trump = "XIX The Sun";
             elseif obj.value == 20
-                s = "XX Judgement";
+                Trump = "XX Judgement";
             elseif obj.value == 21
-                s = "XXI The World";
+                Trump = "XXI The World";
             elseif obj.value == 22
-                s = "0 The Fool";
+                Trump = "0 The Fool";
+                %fool has no number, can be considered the 22nd trump
             end
         end
-        function s = value_string(obj)
+        function card_val = value_string(obj)
             if obj.value < 11
-                s = string(obj.value);
+                card_val = string(obj.value);
             else
-                face_cards = ["Knave", "Cavalier", "Queen", "King"];
-                s = face_cards(obj.value-10);
+                face_cards = ["Jack", "Cavalier", "Queen", "King"];
+                card_val = face_cards(obj.value-10);
+                %subtract 10 to account for the 14 cards in suit
             end
         end
         function outputArg = equals(cardA,cardB)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
+            %need to determine if two cards are equal
+            
             if ~strcmp(cardA.suit, cardB.suit) || (cardA.value ~= cardB.value)
                 outputArg = false;
                 return
             end
             outputArg = true;
         end
+
+        %{
+        Note: The order of the long suits (swords and batons)
+        goes from King, Queen, Cavallo (cavalier), Knave (jack), 10, ..., 1
+        Long suits: K Q C J 10 9 8 7 6 5 4 3 2 1
+
+        The order of the round suits (cups and coins)
+        goes from King, Queen, Cavalier, Jack, 1, ..., 10
+        Round suits: K Q C J 1 2 3 4 5 6 7 8 9 10
+        
+        Trump 20 outranks Trump 21 like in most Piemontese games
+        Trump suit: 20, 21, 19, ..., 1
+        %}
         function output = rank(obj)
             if strcmp(obj.suit, "swords") || strcmp(obj.suit, "batons")
                 output = obj.value;
@@ -129,12 +168,22 @@ and the Pagat "il bagatto" (1).
                 end
             end
         end
+
+        %{
+        Points gained by each card in trick pile:
+        Kings and Trumps 1 and 20: 5 points
+        Queens and the Fool: 4 points
+        Cavallo
+ (Cavaliers/Knights): 3 points
+        Knaves (Jacks): 2 points
+        All other cards: 1 point
+        %}
         function point_output = points(obj)
             king = 14;
             queen = 13;
             fool = 22;
             cavallo = 12;
-            knave = 11;
+            jack = 11;
             if (obj.value == king)
                 point_output = 5;
             elseif strcmp(obj.suit, "trump") && (obj.value == 1 || obj.value == 20)
@@ -143,7 +192,7 @@ and the Pagat "il bagatto" (1).
                 point_output = 4;
             elseif obj.value == cavallo
                 point_output = 3;
-            elseif obj.value == knave
+            elseif obj.value == jack
                 point_output = 2;
             else
                 point_output = 1;
